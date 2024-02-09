@@ -10,7 +10,8 @@ as explained in the README.md file.
 
 from matplotlib import pyplot as plt
 
-US_SENSOR_DATA_FILE = "us_sensor.csv"
+US_SENSOR_DATA_FILE = "D:\\PHILIPPE\\OneDrive - McGill University\\McGill\\Winter 2024\\ECSE 211\\Code\\data_analysis\\us_sensor.csv"
+
 DELAY_SEC = 0.01
 
 with open(US_SENSOR_DATA_FILE, "r") as f:

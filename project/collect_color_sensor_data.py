@@ -7,7 +7,7 @@ It must be run on the robot.
 
 # Add your imports here, if any
 from utils.brick import EV3ColorSensor, wait_ready_sensors, TouchSensor,wait_ready_sensors, reset_brick
-
+import csv
 
 COLOR_SENSOR_DATA_FILE = "../data_analysis/color_sensor.csv"
 
@@ -24,6 +24,8 @@ def collect_color_sensor_data():
     counter=0
     try:
         output_file = open(COLOR_SENSOR_DATA_FILE, "w")
+        writer = csv.writer(output_file)
+        
         while True:
             if counter == 10 :
                 break
@@ -34,7 +36,8 @@ def collect_color_sensor_data():
                 curr_pressed = True
                 color_data = COLOR_SENSOR.get_rgb()
                 if color_data is not None: # If None is given, then data collection failed that time
-                    output_file.write(f"{color_data}\n")
+                    #output_file.write(f"{color_data[0],color_data[1];color_data[2]}\n")
+                    writer.writerow(color_data)
                     counter = counter + 1
                     
                     
