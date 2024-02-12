@@ -36,7 +36,6 @@ def collect_color_sensor_data():
                 curr_pressed = True
                 color_data = COLOR_SENSOR.get_rgb()
                 if color_data is not None: # If None is given, then data collection failed that time
-                    #output_file.write(f"{color_data[0],color_data[1];color_data[2]}\n")
                     writer.writerow(color_data)
                     counter = counter + 1
                     
