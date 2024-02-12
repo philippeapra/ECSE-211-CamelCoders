@@ -29,7 +29,7 @@ def collect_color_sensor_data():
         while True:
             if counter == 10 :
                 break
-            if (not TOUCH_SENSOR.is_pressed()): #prevents the sensor to read continuously at each touch sensor press
+            if (not TOUCH_SENSOR.is_pressed()): #prevents the sensor from reading continuously at each touch sensor press, resets bool to false
                 curr_pressed = False
                 
             elif TOUCH_SENSOR.is_pressed() and curr_pressed == False :
