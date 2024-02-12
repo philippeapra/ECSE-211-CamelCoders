@@ -24,7 +24,7 @@ def collect_color_sensor_data():
     counter=0
     try:
         output_file = open(COLOR_SENSOR_DATA_FILE, "w")
-        writer = csv.writer(output_file)
+        writer = csv.writer(output_file) #imported csv library to remove the square brackets around each value
         
         while True:
             if counter == 10 :
