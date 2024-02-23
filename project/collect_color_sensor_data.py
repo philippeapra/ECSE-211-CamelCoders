@@ -24,19 +24,18 @@ def collect_color_sensor_data():
     counter=0
     try:
         output_file = open(COLOR_SENSOR_DATA_FILE, "w")
-        writer = csv.writer(output_file)
+        writer = csv.writer(output_file) #imported csv library to remove the square brackets around each value
         
         while True:
             if counter == 10 :
                 break
-            if (not TOUCH_SENSOR.is_pressed()):
+            if (not TOUCH_SENSOR.is_pressed()): #prevents the sensor from reading continuously at each touch sensor press, resets bool to false
                 curr_pressed = False
                 
             elif TOUCH_SENSOR.is_pressed() and curr_pressed == False :
                 curr_pressed = True
                 color_data = COLOR_SENSOR.get_rgb()
                 if color_data is not None: # If None is given, then data collection failed that time
-                    #output_file.write(f"{color_data[0],color_data[1];color_data[2]}\n")
                     writer.writerow(color_data)
                     counter = counter + 1
                     
