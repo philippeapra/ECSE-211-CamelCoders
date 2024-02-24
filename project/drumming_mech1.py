@@ -33,15 +33,38 @@ def stop_all_sound():
     tone5.stop()
     tone6.stop()
 
+def update_pressed_str():
+        pressed = ""
+        if TS1.is_pressed():
+            pressed+="1"
+        else:
+            pressed+="0"
+
+        if TS2.is_pressed():
+            pressed+="1"
+        else:
+            pressed+="0"
+
+        if TS3.is_pressed():
+            pressed+="1"
+        else:
+            pressed+="0"
 
 try:
     
     print("Starting main loop")
     DRUM_STARTED = False
+    touch_sensors = [TS1,TS2,TS3]
+    pressed = ""   #string expressing which btns are pressed in this iteration
+    
+    
     while True:
 
+        pressed = update_pressed_str()
+
+
         # Emergency stop mechanism
-        if TS1.is_pressed() and TS2.is_pressed() and TS3.is_pressed():
+        if pressed=="111":
             break
 
         # Drumming mechanism
@@ -55,25 +78,25 @@ try:
             time.sleep(0.25)
 
         # Flute mechanism
-        if TS1.is_pressed() and not TS2.is_pressed() and not TS3.is_pressed() and not tone1.is_playing():
+        if pressed=="100":
             stop_all_sound()
             tone1.play()
-        elif not TS1.is_pressed() and  TS2.is_pressed() and not TS3.is_pressed() and not tone2.is_playing():
+        elif pressed=="010":
             stop_all_sound()
             tone2.play()
-        elif not TS1.is_pressed() and not TS2.is_pressed() and TS3.is_pressed() and not tone3.is_playing():
+        elif pressed=="001":
             stop_all_sound()
             tone3.play()
-        elif TS1.is_pressed() and TS2.is_pressed() and not TS3.is_pressed() and not tone4.is_playing():
+        elif pressed=="110":
             stop_all_sound()
             tone4.play()
-        elif not TS1.is_pressed() and  TS2.is_pressed() and TS3.is_pressed() and not tone5.is_playing():
+        elif pressed=="011":
             stop_all_sound()
             tone5.play()
-        elif TS1.is_pressed() and  not TS2.is_pressed() and TS3.is_pressed() and not tone6.is_playing():
+        elif pressed=="101":
             stop_all_sound()
             tone6.play()
-        elif not TS1.is_pressed() and not TS2.is_pressed() and not TS3.is_pressed():
+        elif pressed=="000":
             stop_all_sound()
 
 # capture all exceptions
