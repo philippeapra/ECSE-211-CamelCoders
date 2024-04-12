@@ -30,7 +30,7 @@ print("Done initializing code")
 
 initial_angle = GS.get_abs_measure()
 curr_angle = initial_angle
-    
+
 
 #print("US2 (side): ",US2.get_cm())
 
